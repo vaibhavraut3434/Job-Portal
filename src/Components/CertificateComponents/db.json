@@ -1,0 +1,27 @@
+{
+    "-MuQtAWMaRssi3IXxifI": {
+        "company": "LinkedIn Learning",
+        "course": "React Essentials",
+        "credId": "73bcyxd9ncw2j4nf7dsd"
+    },
+    "-MuQvMFe4ofvXv1LSfc3": {
+        "company": "LinkedIn Learning",
+        "course": "Power Apps",
+        "credId": "mf3j6k4udg8s5f5vds2d"
+    },
+    "-MuQvQqyyT4fBwU2ZErw": {
+        "company": "Udemy",
+        "course": "Power Automate",
+        "credId": "d7g5sfs8t5sffv5sdf5"
+    }
+}
+
+{Object.keys(course).map( (x) => {
+    return (
+        <tr key={x}>
+            <td>{course[x][0]}</td>
+            <td>{course[x][1]}</td>
+            <td>{course[x][2]}</td>
+        </tr>
+    )
+})}
