@@ -108,6 +108,9 @@ const Certificates = () => {
                 <Form.Group className="mb-3">
                   <Form.Label>Name of the Course</Form.Label>
                   <Form.Control
+                    required
+                    maxLength={30}
+                    minLength={5}
                     onChange={handleInputChange}
                     name="course"
                     id="course"
@@ -121,6 +124,10 @@ const Certificates = () => {
                 <Form.Group className="mb-3">
                   <Form.Label>Issuer Company</Form.Label>
                   <Form.Control
+                    required
+                  
+                    maxLength={20}
+                    minLength={2}
                     onChange={handleInputChange}
                     name="company"
                     id="company"
@@ -134,6 +141,9 @@ const Certificates = () => {
                 <Form.Group className="mb-3">
                   <Form.Label>Credential Id</Form.Label>
                   <Form.Control
+                    required
+                    minLength={6}
+                    maxLength={8}
                     onChange={handleInputChange}
                     name="credId"
                     id="credId"
