@@ -3,7 +3,6 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap-v5";
 import firebaseConfig from "./config";
 
 const Register = () => {
-
   const initialFieldValues = {
     email: "",
     password: "",
@@ -50,7 +49,6 @@ const Register = () => {
     alert("Form Submitted Successfully");
   };
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -64,16 +62,16 @@ const Register = () => {
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          // ..
+          alert(errorMessage);
         });
     } catch (error) {
       alert(error);
     }
-  
   };
 
   return (
     <div>
+      <h1></h1>
       <Row className="justify-content-md-center">
         <Card border="primary" style={{ width: "30rem" }}>
           <Card.Body>
@@ -88,6 +86,7 @@ const Register = () => {
                     placeholder="Enter email"
                     value={values.email}
                     onChange={handleInputChange}
+                    required
                   />
                 </Form.Group>
 
@@ -100,6 +99,7 @@ const Register = () => {
                     placeholder="Password"
                     value={values.password}
                     onChange={handleInputChange}
+                    required
                   />
                 </Form.Group>
               </Row>
@@ -107,11 +107,16 @@ const Register = () => {
               <Form.Group className="mb-3">
                 <Form.Label>Your Name</Form.Label>
                 <Form.Control
+                  type="text"
                   name="fullName"
                   id="fullName"
                   placeholder="Enter your full name..."
                   value={values.fullName}
                   onChange={handleInputChange}
+                  required
+                  minLength={5}
+                  maxLength={50}
+                  pattern="[A-Za-z]{50}"
                 />
               </Form.Group>
 
@@ -122,12 +127,15 @@ const Register = () => {
                     <div>
                       <Form.Check
                         inline
+                        defaultChecked
+                        defaultValue={"Male"}
                         label="Male"
                         name="gender"
                         type="radio"
                         id="gender"
                         value="Male"
                         onChange={handleInputChange}
+                        required
                       />
                       <Form.Check
                         inline
@@ -137,6 +145,7 @@ const Register = () => {
                         id="gender"
                         value="Female"
                         onChange={handleInputChange}
+                        required
                       />
                     </div>
                   </div>
@@ -150,6 +159,8 @@ const Register = () => {
                     id="dob"
                     values={values.dob}
                     onChange={handleInputChange}
+                    required
+                    max="2022-01-31"
                   />
                 </Form.Group>
               </Row>
@@ -158,30 +169,41 @@ const Register = () => {
                 <Form.Group as={Col}>
                   <Form.Label>Mobile No.</Form.Label>
                   <Form.Control
+                    type="tel"
+                    minLength={10}
                     name="mob"
                     id="mob"
                     value={values.mob}
                     onChange={handleInputChange}
+                    required
+                    pattern="[0-9]{10}"
                   />
                 </Form.Group>
 
                 <Form.Group as={Col}>
                   <Form.Label>City</Form.Label>
                   <Form.Control
+                    type="text"
                     name="city"
                     id="city"
                     value={values.city}
                     onChange={handleInputChange}
+                    required
+                    minLength={3}
+                    maxLength={20}
+                    pattern="[A-Za-z]{20}"
                   />
                 </Form.Group>
 
                 <Form.Group as={Col}>
                   <Form.Label>Education</Form.Label>
                   <Form.Select
+                    
                     name="edu"
                     id="edu"
                     value={values.edu}
                     onChange={handleInputChange}
+                    required
                     defaultValue="Choose..."
                   >
                     <option>Choose...</option>

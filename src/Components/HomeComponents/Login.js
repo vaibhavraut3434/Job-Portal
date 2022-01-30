@@ -19,7 +19,15 @@ const Login = () => {
     try {
       firebaseConfig
         .auth()
-        .signInWithEmailAndPassword(form.email, form.password);
+        .signInWithEmailAndPassword(form.email, form.password)
+        .then((userCredential) => {
+          var user = userCredential.user;
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage)
+        });
     } catch (error) {
       alert(error);
     }
@@ -27,7 +35,7 @@ const Login = () => {
 
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    navigate('/documents');
+    navigate('/profile');
   }
 
   return (
@@ -45,6 +53,7 @@ const Login = () => {
                 onChange={(e) => {
                   setForm({ ...form, email: e.target.value });
                 }}
+                required
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
@@ -61,13 +70,14 @@ const Login = () => {
                 onChange={(e) => {
                   setForm({ ...form, password: e.target.value });
                 }}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Check type="checkbox" label="Check me out" />
+              {/* <Form.Check type="checkbox" label="Check me out" /> */}
             </Form.Group>
             <Button variant="primary" type="submit">
-              Submit
+              Login
             </Button>
           </Form>
         </Card.Body>

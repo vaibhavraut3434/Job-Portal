@@ -7,6 +7,9 @@ const Home = () => {
   return (
     <div>
       <Row>
+        <h1></h1>
+      </Row>
+      <Row>
         <Col>
           <Register />
         </Col>

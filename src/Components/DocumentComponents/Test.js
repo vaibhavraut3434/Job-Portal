@@ -36,7 +36,9 @@ class Test extends Component {
   handleUpload = (temp) => {
     const { image } = this.state;
     const storage = firebaseConfig.storage();
-    const uploadTask = storage
+    
+    if (image)
+    {const uploadTask = storage
       .ref(`images/` + temp + `/${image.name}`)
       .put(image);
     uploadTask.on(
@@ -46,12 +48,18 @@ class Test extends Component {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         this.setState({ progress });
-        
+        // if(progress===100){
+        //   alert("Upload Success");
+        // }
       },
       (error) => {
-        console.log(error);
+        alert(error.message);
       }
     );
+    
+  }else{
+    alert("Choose Image");
+  }
     
   };
 
